@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+//hi garrett this is my comment
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 
