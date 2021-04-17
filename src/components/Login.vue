@@ -134,4 +134,7 @@ export default class Login extends Vue {
     .box button[type = "submit"]:hover{
         background: #2e80cc;
     }
+    .hidden{
+        display: none;
+    }
 </style>
