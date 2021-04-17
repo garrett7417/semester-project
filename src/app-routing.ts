@@ -4,6 +4,7 @@ import Login from "./components/Login.vue";
 import HomePage from "./components/HomePage.vue";
 import Rent from "./components/Rent.vue";
 import RentalConfirmation from "./components/RentalConfirmation.vue";
+import AccountInfo from "./components/AccountInfo.vue";
 import BoatManagement from "./components/BoatManagement.vue";
 import { component } from "vue/types/umd";
 import { hasProto } from "vue-class-component/lib/util";
@@ -34,6 +35,12 @@ const myRoutes: Array<RouteConfig> = [
         component: RentalConfirmation,
     },
 
+    {
+        name: "AccountInfo",
+        path: "/accountinfo",
+        component: AccountInfo,
+    },
+    
     {
         name: "BoatManagement",
         path: "/management",

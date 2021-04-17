@@ -14,12 +14,14 @@ import HomePage from './components/HomePage.vue';
 import Rent from './components/Rent.vue';
 import RentalConfirmation from './components/RentalConfirmation.vue';
 import BoatManagement from './components/BoatManagement.vue';
+import AccountInfo from './components/AccountInfo.vue';
 
 @Component({
   components: {
-    Login, HomePage, Rent, RentalConfirmation, BoatManagement
-  },
+    Login, HomePage, Rent, RentalConfirmation, BoatManagement, AccountInfo
+  }
 })
+
 export default class App extends Vue {
   readonly $appDB!: FirebaseFirestore;
 

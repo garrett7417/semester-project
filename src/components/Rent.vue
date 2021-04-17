@@ -8,6 +8,8 @@
     <select v-model="boatName" v-if="isAvailable">
         <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
     </select>
+    <button @click="homeRedirect()">Return Home</button>
+    <button @click="userInfoRedirect()">Account Information</button>
     <footer>
         <button @click="confirm()">Confirm</button>
     </footer>
@@ -57,8 +59,13 @@ export default class Rent extends Vue{
       this.$router.push({ path: "/rentalconfirmation"})
       this.isAvailable = false;
   }
-}
 
+  //redirects to user info page
+  userInfoRedirect(){
+    console.log("userInfoRedirect button clicked")
+    this.$router.push({ path: "/accountinfo" })
+  }
+}
 </script>
 
 <style>
