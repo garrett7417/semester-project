@@ -14,15 +14,7 @@ import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 
 @Component
 export default class Rent extends Vue{
-  //logout of web app
-  readonly $appAuth!: FirebaseAuth;
-  userLoggedIn(): boolean {
-    return this.$appAuth.currentUser?.uid !== undefined;
-  }
-  doLogout(): void {
-    this.$appAuth.signOut();
-    this.$router.back();
-  }
+  
 }
 
 </script>

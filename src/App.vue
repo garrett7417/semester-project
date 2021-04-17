@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <button v-if="userLoggedIn()" @click="doLogout">Logout</button>
     <router-view></router-view>
   </div>
 </template>
@@ -20,6 +21,16 @@ import Rent from './components/Rent.vue';
 export default class App extends Vue {
   readonly $appDB!: FirebaseFirestore;
 
+  //logout of web app
+  readonly $appAuth!: FirebaseAuth;
+  userLoggedIn(): boolean {
+    return this.$appAuth.currentUser?.uid !== undefined;
+  }
+  doLogout(): void {
+    this.$appAuth.signOut();
+    this.$router.back();
+  }
+  
   mounted(): void {
     console.log("API Key", this.$appDB.app.options_.apiKey);
   }

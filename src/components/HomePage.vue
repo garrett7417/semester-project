@@ -2,11 +2,10 @@
   <div id="topCotainer">
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
-    <button v-if="userLoggedIn()" @click="doLogout">Logout</button>
     <div class="gallary" align="center">
       <h3>Boat Gallary</h3>
       <div class="thumbnails">
-        <img onmouseover="preview.src=2021 Malibu Wakesetter.src" name ="2018 Malibu Wakesetter" 
+        <img onmouseover="preview.src=2021 Malibu Wakesetter.src" name ="2021 Malibu Wakesetter" 
         src="../assets/2021 Malibu Wakesetter.jpg" alt="2021 Malibu Wakesetter">
       </div>
     </div>
