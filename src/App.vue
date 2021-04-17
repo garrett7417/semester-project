@@ -46,4 +46,25 @@ export default class App extends Vue {
   color: black;
   margin-top: 60px;
 }
+
+/* Button styling */
+    button{
+        border: 0;
+        background: none;
+        display: inline;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #ffffff;
+        padding: 14px 40px;
+        margin-left: 10px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+        cursor: pointer;
+    }
+    /* Button hover styling */
+    button:hover{
+        background: #2e80cc;
+    }
 </style>
