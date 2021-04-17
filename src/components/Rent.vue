@@ -1,8 +1,8 @@
 <template>
   <div id="rentalDetails">
     <h1>Rental Details</h1>
-    <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
-    <input type="number" max="15" placeholder="Enter number of children" /><br>
+    <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
+    <input type="number" max="15" placeholder="Enter number of children" /><br> -->
     <h3>Choose the boat(s) you want</h3><br>
   </div>
 </template>
