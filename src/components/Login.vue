@@ -2,8 +2,8 @@
     <div id="topLogin">
         <div class="box">
             <h1>Login</h1>
-            <input type="text" placeholder="Email" v-model="userEmail">
-            <input type="password" placeholder="Password" v-model="userPassword">
+            <input type="text" placeholder="Email" v-model="userEmail"  @keyup.enter="authenticate">
+            <input type="password" placeholder="Password" v-model="userPassword" @keyup.enter="authenticate">
             <button id="loginBtn" v-on:click="authenticate" type="submit">Login</button>
             <button id="signupBtn" v-on:click="createAccount" type="submit">Sign Up</button>
         </div>
