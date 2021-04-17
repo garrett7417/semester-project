@@ -1,5 +1,7 @@
 <template>
   <div id="topCotainer">
+    <button @click="rentNowRedirect()">Rent Now</button>
+    
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
     <button @click="rentNowRedirect()">Rent Now</button>
@@ -37,7 +39,6 @@ import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 
 @Component
 export default class Home extends Vue{
-  //redirects to rent now page
   rentNowRedirect(){
     console.log("rentNowRedirect button clicked")
     this.$router.push({ path: "/rent" })
@@ -48,7 +49,6 @@ export default class Home extends Vue{
     console.log("userInfoRedirect button clicked")
     this.$router.push({ path: "/accountinfo" })
   }
-
 }
 
 </script>
@@ -73,5 +73,7 @@ export default class Home extends Vue{
     padding: 1px;
     width: 800px;
   }
-
+  .button{
+    display: inline;
+  }
 </style>

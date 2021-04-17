@@ -1,14 +1,18 @@
 <template>
   <div id="rentalDetails">
+    <button class="hidden" @click="homeRedirect()">Home</button>
     <h1>Rental Details</h1>
     <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
     <h3>Choose the boat(s) you want</h3><br>
-    <select v-model="boatName">
+    <select v-model="boatName" v-if="isAvailable">
         <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
     </select>
     <button @click="homeRedirect()">Return Home</button>
     <button @click="userInfoRedirect()">Account Information</button>
+    <footer>
+        <button @click="confirm()">Confirm</button>
+    </footer>
   </div>
 </template>
 
@@ -25,6 +29,7 @@ export default class Rent extends Vue{
     private uid = "none";
     private boatName = "";
     private allBoats: any[] = [];
+    private isAvailable = true;
 
     //Pulls the boat names from the Firebase collection
     mounted(): void{
@@ -35,20 +40,24 @@ export default class Rent extends Vue{
             .onSnapshot ((qs: QuerySnapshot) =>{
                 this.allBoats.splice(0);
                 qs.forEach((qds: QueryDocumentSnapshot) => {
-                    if(qds.exists){
+                    if(qds.exists && this.isAvailable){
                         const boatName = qds.data();
-                        this.allBoats.push({
+                        this.allBoats.push({                           
                             name: boatName.name
                         })
                     }
                 })
             })
     }
-  
-  //redirects to home page
-  homeRedirect(){
+
+    homeRedirect(){
     console.log("homeRedirect button clicked")
     this.$router.push({ path: "/home" })
+  }
+
+  confirm(){
+      this.$router.push({ path: "/rentalconfirmation"})
+      this.isAvailable = false;
   }
 
   //redirects to user info page
@@ -66,5 +75,8 @@ export default class Rent extends Vue{
     label{
         font-size: 20px;
         color: white;
+    }
+    .hidden{
+        display: inline;
     }
 </style>
