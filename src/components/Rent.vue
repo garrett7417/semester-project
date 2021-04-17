@@ -25,6 +25,7 @@ export default class Rent extends Vue{
     private boatName = "";
     private allBoats: any[] = [];
 
+    //Pulls the boat names from the Firebase collection
     mounted(): void{
         this.uid = this.$appAuth.currentUser?.uid ?? "none";
         this.$appDB
@@ -33,7 +34,7 @@ export default class Rent extends Vue{
             .onSnapshot ((qs: QuerySnapshot) =>{
                 this.allBoats.splice(0);
                 qs.forEach((qds: QueryDocumentSnapshot) => {
-                    if(qds.exists && this.boatName != undefined){
+                    if(qds.exists){
                         const boatName = qds.data();
                         this.allBoats.push({
                             name: boatName.name
