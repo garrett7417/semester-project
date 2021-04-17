@@ -3,6 +3,7 @@
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
     <button @click="rentNowRedirect()">Rent Now</button>
+    <button @click="userInfoRedirect()">Account Information</button>
     <div class="gallary" align="center">
       <h3>Boat Gallary</h3>
       <div class="thumbnails">
@@ -40,6 +41,12 @@ export default class Home extends Vue{
   rentNowRedirect(){
     console.log("rentNowRedirect button clicked")
     this.$router.push({ path: "/rent" })
+  }
+
+  //redirects to user info page
+  userInfoRedirect(){
+    console.log("userInfoRedirect button clicked")
+    this.$router.push({ path: "/accountinfo" })
   }
 
 }

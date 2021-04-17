@@ -12,10 +12,11 @@ import{ FirebaseAuth } from "@firebase/auth-types";
 import Login from './components/Login.vue';
 import HomePage from './components/HomePage.vue';
 import Rent from './components/Rent.vue';
+import AccountInfo from './components/AccountInfo.vue';
 
 @Component({
   components: {
-    Login, HomePage, Rent
+    Login, HomePage, Rent, AccountInfo
   },
 })
 export default class App extends Vue {

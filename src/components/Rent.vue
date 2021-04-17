@@ -8,6 +8,7 @@
         <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
     </select>
     <button @click="homeRedirect()">Return Home</button>
+    <button @click="userInfoRedirect()">Account Information</button>
   </div>
 </template>
 
@@ -49,8 +50,13 @@ export default class Rent extends Vue{
     console.log("homeRedirect button clicked")
     this.$router.push({ path: "/home" })
   }
-}
 
+  //redirects to user info page
+  userInfoRedirect(){
+    console.log("userInfoRedirect button clicked")
+    this.$router.push({ path: "/accountinfo" })
+  }
+}
 </script>
 
 <style>

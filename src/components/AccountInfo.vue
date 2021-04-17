@@ -1,13 +1,13 @@
 <template>
-    <div id="topContainer">
-        <div class="box">
-            <h1>Account Information</h1>
-            <input type="text" placeholder="First name" v-model="firstName">
-            <input type="text" placeholder="Last name" v-model="lastName">
-            <input type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber">
-            <input type="text" placeholder="email@domain.com" v-model="email">
-            <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
-        </div>
+    <div id="testcontainer">
+        <h1>Account Information</h1>
+        <button @click="rentNowRedirect()">Rent Now</button>
+        <button @click="homeRedirect()">Return Home</button>
+        <input type="text" placeholder="First name" v-model="firstName">
+        <input type="text" placeholder="Last name" v-model="lastName">
+        <input type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber">
+        <input type="text" placeholder="email@domain.com" v-model="email">
+        <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
         <div>{{message}}</div>
     </div>
 </template>
@@ -18,7 +18,7 @@ import { FirebaseFirestore, QuerySnapshot, QueryDocumentSnapshot } from "@fireba
 import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
     
 @Component
-export default class Login extends Vue {
+export default class AccountInfo extends Vue {
     readonly $appAuth!: FirebaseAuth;
     readonly $appDB!: FirebaseFirestore;
     private uid = "none";
@@ -31,9 +31,16 @@ export default class Login extends Vue {
     //Saves user info
     saveUserInfo(): void {
         console.log("save user info button clicked");
-    this.$appDB
-      .collection(`users/${this.uid}/userInfo`)
-      .add({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, email: this.email });
+        console.log("this is the user id", this.uid)
+        this.$appDB
+            .collection(`users`)
+            .doc(`${this.uid}`)
+            .set({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, email: this.email });
+    }
+
+    mounted(): void{
+        console.log("Welcome to the AccountInfo page")
+        this.uid = this.$appAuth.currentUser?.uid ?? "none"
     }
 
     /* mounted(): void {
@@ -64,72 +71,21 @@ export default class Login extends Vue {
             this.message = "";
         },  5000);
     }
+
+    //redirects to home page
+    homeRedirect(){
+        console.log("homeRedirect button clicked")
+        this.$router.push({ path: "/home" })
+    }
+
+    //redirects to rent now page
+    rentNowRedirect(){
+        console.log("rentNowRedirect button clicked")
+        this.$router.push({ path: "/rent" })
+    }
 }
 </script>
 
 <style>
-    /* Style for page background */
-    body{
-        margin: 0;
-        padding: 0;
-        font-family: sans-serif;
-        background: #34495e;
-    }
-    /* Style for the main form */
-    .box{
-        width: 300px;
-        padding: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #191919;
-        text-align: center;
-    }
-    /* Style for the the h1 element in the form */
-    .box h1{
-        color: white;
-        text-transform: uppercase;
-        font-weight: 500;
-    }
-    /* Style for the email and password input fields */
-    .box input[type="text"],.box input[type="password"]{
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #d62f23;
-        padding: 14px 10px;
-        width: 200px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-    }
-    /* Selected input styling */
-    .box input[type="text"]:focus,.box input[type="password"]:focus{
-        width: 280px;
-        border-color: #2e80cc;    
-    }
-    /* Button styling */
-    .box button[type = "submit"]{
-        border: 0;
-        background: none;
-        display: inline;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #ffffff;
-        padding: 14px 40px;
-        margin-left: 10px;
-        outline: none;
-        color: white;
-        border-radius: 24px;
-        transition: 0.25s;
-        cursor: pointer;
-    }
-    /* Button hover styling */
-    .box button[type = "submit"]:hover{
-        background: #2e80cc;
-    }
+
 </style>
