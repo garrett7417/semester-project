@@ -13,10 +13,11 @@ import Login from './components/Login.vue';
 import HomePage from './components/HomePage.vue';
 import Rent from './components/Rent.vue';
 import RentalConfirmation from './components/RentalConfirmation.vue';
+import BoatManagement from './components/BoatManagement.vue';
 
 @Component({
   components: {
-    Login, HomePage, Rent, RentalConfirmation
+    Login, HomePage, Rent, RentalConfirmation, BoatManagement
   },
 })
 export default class App extends Vue {
