@@ -7,6 +7,7 @@
     <select v-model="boatName">
         <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
     </select>
+    <button @click="homeRedirect()">Return Home</button>
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export default class Rent extends Vue{
     readonly $appAuth!: FirebaseAuth;
     readonly $appDB!: FirebaseFirestore;
     private uid = "none";
-    private boatName = "Hi";
+    private boatName = "";
     private allBoats: any[] = [];
 
     mounted(): void{
@@ -42,6 +43,11 @@ export default class Rent extends Vue{
             })
     }
   
+  //redirects to home page
+  homeRedirect(){
+    console.log("homeRedirect button clicked")
+    this.$router.push({ path: "/home" })
+  }
 }
 
 </script>
