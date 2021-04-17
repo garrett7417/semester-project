@@ -28,7 +28,7 @@ export default class App extends Vue {
   }
   doLogout(): void {
     this.$appAuth.signOut();
-    this.$router.back();
+    this.$router.push({path: "/"});
   }
   
   mounted(): void {
