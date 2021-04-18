@@ -11,17 +11,15 @@
       <label>Choose the boat you want: </label><select v-model="boatName" v-if="isAvailable" class="right">
           <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
       </select>
-      <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
+      <!-- <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
 
       <label>Rental Duration: </label><select class="right">
         <option></option>
         <option>4 Hours</option>
         <option>8 Hours</option>
-      </select>
+      </select> -->
+      <button class="confirm" @click="confirm()">Confirm</button>
     </div>
-    <footer>
-        <button @click="confirm()">Confirm</button>
-    </footer>
   </div>
 </template>
 
@@ -86,15 +84,29 @@ export default class Rent extends Vue{
 </script>
 
 <style>
-  .right{
-    float: right;
+  .confirm{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 30px;
     margin-right: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
   }
   label{
     text-align: right;
     float: left;
+    font-size: 20px;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 33px;
     margin-right: 10px;
   }
   .userInputs{
