@@ -1,6 +1,7 @@
 <template>
   <div id="rentalDetails">
-    <button class="hidden" @click="homeRedirect()">Home</button>
+    <button class="navBtn" @click="homeRedirect()">Return Home</button>
+    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
     <h1>Rental Details</h1>
     <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
@@ -8,8 +9,6 @@
     <select v-model="boatName" v-if="isAvailable">
         <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
     </select>
-    <button @click="homeRedirect()">Return Home</button>
-    <button @click="userInfoRedirect()">Account Information</button>
     <footer>
         <button @click="confirm()">Confirm</button>
     </footer>
@@ -75,8 +74,5 @@ export default class Rent extends Vue{
     label{
         font-size: 20px;
         color: white;
-    }
-    .hidden{
-        display: inline;
     }
 </style>
