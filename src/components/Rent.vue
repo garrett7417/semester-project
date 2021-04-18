@@ -8,7 +8,7 @@
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
     
     <div class="userInputs">
-      <label>Choose the boat you want: </label><select v-model="boatName" v-if="isAvailable" class="right">
+      <label>Choose the boat you want: </label><select v-if="isAvailable = true" v-model="boatName" class="right">
           <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
       </select>
       <!-- <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
