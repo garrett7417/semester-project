@@ -1,7 +1,7 @@
 <template>
   <div id="topCotainer">
     <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-    <button class="navBtn" @click="userInfoRedirect()">Account Information</button><br>
+    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
     <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
