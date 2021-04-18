@@ -166,25 +166,4 @@ export default class AccountInfo extends Vue {
   margin-left: 10px;
   color: black;
 }
-
-/* .inputSection {
-  margin: 5em auto;
-  width: 22em;
-  border-radius: 1em;
-}
-
-.inputSection label {
-  text-align: right;
-  float: left;
-  
-  width: 100px;
-  margin-top: 1em;
-}
-
-.inputSection input {
-  text-align: left;
-  padding-top: .75em;
-  width: 200px;
-  margin-top: 1em;
-} */
 </style>
