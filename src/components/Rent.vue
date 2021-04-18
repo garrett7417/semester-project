@@ -6,13 +6,20 @@
     <h1 id="header1">Rental Details</h1>
     <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
-    <h3>Choose the boat(s) you want</h3><br>
-    <select v-model="boatName" v-if="isAvailable">
-        <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
-    </select>
-    <footer>
-        <button @click="confirm()">Confirm</button>
-    </footer>
+    
+    <div class="userInputs">
+      <label>Choose the boat you want: </label><select v-model="boatName" v-if="isAvailable" class="right">
+          <option v-for="(c,pos) in allBoats" :value="c.name" :key="pos"> {{c.name}}</option>
+      </select>
+      <!-- <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
+
+      <label>Rental Duration: </label><select class="right">
+        <option></option>
+        <option>4 Hours</option>
+        <option>8 Hours</option>
+      </select> -->
+      <button class="confirm" @click="confirm()">Confirm</button>
+    </div>
   </div>
 </template>
 
@@ -78,11 +85,44 @@ export default class Rent extends Vue{
 </script>
 
 <style>
+  .confirm{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 30px;
+    margin-right: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+  }
+  label{
+    text-align: right;
+    float: left;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 33px;
+    margin-right: 10px;
+  }
+  .userInputs{
+    border-radius: 25px;
+    border: 5px solid #0982a0;
+    background: rgb(179, 178, 178);
+    display: inline-block;
+    width: 500px;
+  }
+  footer{
+    position: absolute;
+    bottom: 0;
+  }
     #rentailDetails{
         color: white;
     }
-    label{
-        font-size: 20px;
-        color: white;
-    }
+
 </style>

@@ -1,45 +1,49 @@
 <template>
   <div id="management">
-    <button class="navBtn" @click="homeRedirect()">Return Home</button>
-    <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
-    <h1 id="header1">Boat Management</h1>
-    <div id="addBoat">
-        <h2>Add a New Boat</h2>
-        <label class="label">Name: </label><input type="text" class="txtBox" v-model="name" placeholder="Boat Name"><br>
-        <label class="label">Make: </label><input type="text" class="txtBox" v-model="make" placeholder="Manufacturer Name"><br>
-        <label class="label">Model: </label><input type="text" class="txtBox" v-model="model" placeholder="Boat Model"><br>
-        <label class="label">Year: </label><input type="number" class="txtBox" v-model="year" placeholder="Year Created"><br>
-        <label class="label">Capacity: </label><input type="number" class="txtBox" v-model="capacity" placeholder="Maximum Riders"><br>
-        <label class="label">Availability: </label><input type="boolean" class="txtBox" v-model="availability" placeholder="Is the boat available"><br>
-        <button id="add" @click="addBoat()">Add</button>
+        <button class="navBtn" @click="homeRedirect()">Return Home</button>
+        <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+        <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
+        <h1>Boat Management</h1>
+    <div class ="split left">
+        <div id="addBoat">
+            <h2>Add a New Boat</h2>
+            <label class="label">Name: </label><input type="text" class="txtBox" v-model="name" placeholder="Boat Name"><br>
+            <label class="label">Make: </label><input type="text" class="txtBox" v-model="make" placeholder="Manufacturer Name"><br>
+            <label class="label">Model: </label><input type="text" class="txtBox" v-model="model" placeholder="Boat Model"><br>
+            <label class="label">Year: </label><input type="number" class="txtBox" v-model="year" placeholder="Year Created"><br>
+            <label class="label">Capacity: </label><input type="number" class="txtBox" v-model="capacity" placeholder="Maximum Riders"><br>
+            <label class="label">Availability: </label><input type="boolean" class="txtBox" v-model="availability" placeholder="Is the boat available"><br>
+            <button id="add" @click="addBoat()">Add</button>
+        </div>
+
+        <div id="removeBoat">
+            <h2>Remove a Boat</h2>
+            <select id="boats" v-model="docName">
+                <option v-for="(c,pos) in allBoatData" :value="c.docName" :key="pos"> {{c.docName}}</option>
+            </select>
+            <button id="remove" @click="removeBoat()">Remove</button>
+        </div>
     </div>
 
-    <div id="removeBoat">
-        <h2>Remove a Boat</h2>
-        <select id="boats" v-model="docName">
-            <option v-for="(c,pos) in allBoatData" :value="c.docName" :key="pos"> {{c.docName}}</option>
-        </select>
-        <button id="remove" @click="removeBoat()">Remove</button>
+    <div class="split right">
+        <h2>Our Current Boats</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Capacity</th>
+            </tr>
+            <tr v-for="(z,pos) in allBoatData" :key="pos">
+                <td id="left">{{z.name}}</td>
+                <td id="left">{{z.make}}</td>
+                <td id="left">{{z.model}}</td>
+                <td id="right">{{z.year}}</td>
+                <td id="right">{{z.capacity}}</td>
+            </tr>
+        </table>
     </div>
-
-    <h2>Our Current Boats</h2>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Capacity</th>
-        </tr>
-        <tr v-for="(z,pos) in allBoatData" :key="pos">
-            <td id="left">{{z.name}}</td>
-            <td id="left">{{z.make}}</td>
-            <td id="left">{{z.model}}</td>
-            <td id="right">{{z.year}}</td>
-            <td id="right">{{z.capacity}}</td>
-        </tr>
-    </table>
   </div>
 </template>
 
@@ -124,7 +128,59 @@ export default class BoatManagement extends Vue{
 </script>
 
 <style>
-/* Add Button Styles */
+/* Screen view Styles */
+h1{
+    text-align: center;
+}
+.split{
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left{
+    left: 0;
+    margin-top: 10%;
+}
+
+.right{
+    right: 0;
+    margin-top: 7%;
+}
+
+/* Remove boat Styles */
+#removeBoat{
+    border-radius: 25px;
+    border: 5px solid #0982a0;
+    background: rgb(179, 178, 178);
+    margin: 15px;
+    display: block;
+    width: 320px;
+    margin-left: 315px;
+}
+#boats{
+    margin-left: 10px;
+}
+#remove{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 20px;
+    margin-left: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/* Add Boat Styles */
 #add{
     border: 0;
     background: white;
@@ -141,39 +197,12 @@ export default class BoatManagement extends Vue{
     cursor: pointer;
     float: right;
 }
-/* Remove boat styles */
-#removeBoat{
-    border-radius: 25px;
-    border: 5px solid #0982a0;
-    background: rgb(179, 178, 178);
-    margin: 15px;
-    display: inline-block;
-}
-#boats{
-    margin-left: 10px;
-}
-#remove{
-    border: 0;
-    background: white;
-    display: inline;
-    margin: 10px auto;
-    text-align: center;
-    border: 2px solid #0982a0;
-    padding: 5px 20px;
-    margin-right: 10px;
-    margin-left: 10px;
-    outline: none;
-    color: black;
-    transition: 0.25s;
-    border-radius: 10px;
-    cursor: pointer;
-}
-/* Add Boat Styles */
 #addBoat{
     border-radius: 25px;
     border: 5px solid #0982a0;
     background: rgb(179, 178, 178);
-    display: inline-block; 
+    display: inline-block;
+    width: 320px;
 }
 .txtBox{
     float: right;
