@@ -1,6 +1,8 @@
 <template>
   <div id="rentalDetails">
-    
+      <footer>
+        <button>Previous</button>
+      </footer>
   </div>
 </template>
 

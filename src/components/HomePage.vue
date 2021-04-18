@@ -2,7 +2,7 @@
   <div id="topCotainer">
     <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
     <button class="navBtn" @click="userInfoRedirect()">Account Information</button><br>
-    <button class="navBtn" @click="managementRedirect()">Management</button>
+    <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
     <div class="gallary" align="center">
@@ -38,6 +38,7 @@ import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 
 @Component
 export default class Home extends Vue{
+  readonly $appAuth!: FirebaseAuth;
   rentNowRedirect(){
     console.log("rentNowRedirect button clicked")
     this.$router.push({ path: "/rent" })
@@ -51,6 +52,10 @@ export default class Home extends Vue{
 
   managementRedirect(){
     this.$router.push({ path: "/management" })
+  }
+
+  isAdmin(): boolean{
+    return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2"; 
   }
 }
 
