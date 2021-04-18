@@ -160,7 +160,7 @@ h1{
     margin: 15px;
     display: block;
     width: 320px;
-    margin-left: 315px;
+    float: right;
 }
 #boats{
     margin-left: 10px;
@@ -201,8 +201,11 @@ h1{
     border-radius: 25px;
     border: 5px solid #0982a0;
     background: rgb(179, 178, 178);
-    display: inline-block;
+    display: block;
     width: 320px;
+    float: left;
+    margin-left: 1em;
+    margin-top: 1em;
 }
 .txtBox{
     float: right;
