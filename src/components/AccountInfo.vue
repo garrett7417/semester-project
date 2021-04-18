@@ -9,7 +9,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Phone</th>
-            <th>Email</th>
+            <th>Date of birth</th>
           </thead>
             <tr>
               <td>{{ userInfoArray[0]}}</td>
@@ -32,8 +32,8 @@
           <label for="phone" class="label">Phone:</label>
           <input id="phone" class="textInput" type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber"><br>
 
-          <label for="email" class="label">Email:</label>
-          <input id="email" class="textInput" type="text" placeholder="email@domain.com" v-model="email"><br>
+          <label for="dob" class="label">Date of birth:</label>
+          <input id="dob" class="textInput" type="date"  v-model="dob"><br>
           <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
         </div>
         <div>{{message}}</div>
@@ -55,7 +55,7 @@ export default class AccountInfo extends Vue {
     private firstName = "";
     private lastName = "";
     private phoneNumber = "";
-    private email = "";
+    private dob = "";
     private userInfoArray: any[] = [];
 
     //Saves user info
@@ -65,8 +65,8 @@ export default class AccountInfo extends Vue {
       this.$appDB
         .collection(`users`)
         .doc(`${this.uid}`)
-        .set({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, email: this.email });
-        this.userInfoArray = [this.firstName, this.lastName, this.phoneNumber, this.email]
+        .set({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, dob: this.dob });
+        this.userInfoArray = [this.firstName, this.lastName, this.phoneNumber, this.dob]
     }
 
     mounted(): void{
@@ -82,8 +82,8 @@ export default class AccountInfo extends Vue {
           console.log("active user first name: ", details.firstName);
           console.log("active user last name: ", details.lastName);
           console.log("active user phone number: ", details.phoneNumber);
-          console.log("active user email: ", details.email);
-          this.userInfoArray = [details.firstName, details.lastName, details.phoneNumber, details.email]
+          console.log("active user dob: ", details.dob);
+          this.userInfoArray = [details.firstName, details.lastName, details.phoneNumber, details.dob]
           console.log("userInforArray values: ", this.userInfoArray);
         }
       })
