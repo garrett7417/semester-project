@@ -1,14 +1,26 @@
 <template>
   <div id="management">
-    <h1>Add a New Boat</h1>
-    <label>Name: </label><input type="text" v-model="name" placeholder="Boat Name"><br>
-    <label>Make: </label><input type="text" v-model="make" placeholder="Manufacturer Name"><br>
-    <label>Model: </label><input type="text" v-model="model" placeholder="Boat Model"><br>
-    <label>Year: </label><input type="number" v-model="year" placeholder="Year Created"><br>
-    <label>Capacity: </label><input type="number" v-model="capacity" placeholder="Maximum Riders"><br>
-    <label>Availability: </label><input type="boolean" v-model="availability" placeholder="Is the boat available"><br>
+    <div id="addBoat">
+        <h2>Add a New Boat</h2>
+        <label class="label">Name: </label><input type="text" class="txtBox" v-model="name" placeholder="Boat Name"><br>
+        <label class="label">Make: </label><input type="text" class="txtBox" v-model="make" placeholder="Manufacturer Name"><br>
+        <label class="label">Model: </label><input type="text" class="txtBox" v-model="model" placeholder="Boat Model"><br>
+        <label class="label">Year: </label><input type="number" class="txtBox" v-model="year" placeholder="Year Created"><br>
+        <label class="label">Capacity: </label><input type="number" class="txtBox" v-model="capacity" placeholder="Maximum Riders"><br>
+        <label class="label">Availability: </label><input type="boolean" class="txtBox" v-model="availability" placeholder="Is the boat available"><br>
+        <button id="add" @click="addBoat()">Add</button>
+    </div>
 
-    <tbody>
+    <div id="removeBoat">
+        <h2>Remove a Boat</h2>
+        <select id="boats" v-model="docName">
+            <option v-for="(c,pos) in allBoatData" :value="c.docName" :key="pos"> {{c.docName}}</option>
+        </select>
+        <button id="remove" @click="removeBoat()">Remove</button>
+    </div>
+
+    <h2>Our Current Boats</h2>
+    <table>
         <tr>
             <th>Name</th>
             <th>Make</th>
@@ -17,15 +29,13 @@
             <th>Capacity</th>
         </tr>
         <tr v-for="(z,pos) in allBoatData" :key="pos">
-            <td>{{z.name}}</td>
-            <td>{{z.make}}</td>
-            <td>{{z.model}}</td>
-            <td>{{z.year}}</td>
-            <td>{{z.capacity}}</td>
+            <td id="left">{{z.name}}</td>
+            <td id="left">{{z.make}}</td>
+            <td id="left">{{z.model}}</td>
+            <td id="right">{{z.year}}</td>
+            <td id="right">{{z.capacity}}</td>
         </tr>
-    </tbody>
-
-    <button @click="addBoat()">Add</button>
+    </table>
   </div>
 </template>
 
@@ -43,6 +53,7 @@ export default class BoatManagement extends Vue{
     private model = "";
     private year = "";
     private capacity = "";
+    private docName = "";
     private availability = true;
     private allBoatData: any[] = [];
 
@@ -65,34 +76,89 @@ export default class BoatManagement extends Vue{
                     }
                 });
             });
-    }
+
+        this.$appDB
+            .collection("WaterCrafts").get().then((qs: QuerySnapshot) => {
+                qs.docs.forEach(docName => {
+                        this.allBoatData.push({
+                            docName: docName.id
+                        })
+                    
+                })                
+            })  
+    } 
 
     addBoat(): void{
         this.$appDB
-            .collection(`WaterCrafts`)
+            .collection("WaterCrafts")
             .add({name: this.name, make: this.make, model: this.model, year: this.year, capacity: this.capacity, isAvailable: this.availability})
+    }
+
+    removeBoat(){
+        this.$appDB
+            .collection("WaterCrafts").doc(this.docName).delete();
     }
 }
 
 </script>
 
 <style>
+/* Add Button Styles */
+#add{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 30px;
+    margin-right: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+}
+
+/* Add Boat Styles */
+#addBoat{
+    border-radius: 25px;
+    border: 5px solid #0982a0;
+    background: rgb(179, 178, 178);
+    display: inline-block;
+}
+.txtBox{
+    float: right;
+    text-align: left;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.label{
+   float: left;
+   text-align: right;
+   margin-top: 10px;
+   font-size: 18px;
+   margin-right: 10px;
+   margin-left: 10px;
+   color: black;
+}
+
+/* Table Styles */
   th, td{
-    padding: 12px 15px;
+    padding: 10px 15px;
     font-family: sans-serif;
 }
 
 tr:nth-of-type(even){
     background-color: #f3f3f3;
+    border-bottom: 2px solid rgb(196, 218, 247);
 }
 
 tr:nth-of-type(odd){
     background-color: rgb(230, 230, 230);
-    border-bottom: 2px solid lightgoldenrodyellow;
-}
-
-tr:nth-of-type(even){
-    border-bottom: 2px solid lightgoldenrodyellow;
+    border-bottom: 2px solid rgb(196, 218, 247);
 }
 
 th{
@@ -123,5 +189,12 @@ table{
 
 tr:hover{
     background-color: rgb(203, 238, 247);
+}
+
+#left{
+    text-align: left;
+}
+#right{
+    text-align: right;
 }
 </style>
