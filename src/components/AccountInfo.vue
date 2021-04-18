@@ -9,7 +9,7 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Phone</th>
-            <th>Email</th>
+            <th>Date of birth</th>
           </thead>
             <tr>
               <td>{{ userInfoArray[0]}}</td>
@@ -21,20 +21,21 @@
           </tbody>
         </table>
 
-        <section class="inputSection">
-          <label for="firstName">First name</label>
-          <input id="firstName" class="textInput" type="text" placeholder="First name" v-model="firstName">
+        <div id="saveUserInfoDiv">
+          <h2>Update User Info</h2>
+          <label for="firstName" class="label">First name:</label>
+          <input id="firstName" class="textInput" type="text" placeholder="First name" v-model="firstName"><br>
 
-          <label for="lastName">Last name</label>
-          <input id="lastName" class="textInput" type="text" placeholder="Last name" v-model="lastName">
+          <label for="lastName" class="label">Last name:</label>
+          <input id="lastName" class="textInput" type="text" placeholder="Last name" v-model="lastName"><br>
 
-          <label for="phone">Phone</label>
-          <input id="phone" class="textInput" type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber">
+          <label for="phone" class="label">Phone:</label>
+          <input id="phone" class="textInput" type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber"><br>
 
-          <label for="email">Email</label>
-          <input id="email" class="textInput" type="text" placeholder="email@domain.com" v-model="email">
+          <label for="dob" class="label">Date of birth:</label>
+          <input id="dob" class="textInput" type="date"  v-model="dob"><br>
           <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
-        </section>
+        </div>
         <div>{{message}}</div>
     </div>
 </template>
@@ -54,7 +55,7 @@ export default class AccountInfo extends Vue {
     private firstName = "";
     private lastName = "";
     private phoneNumber = "";
-    private email = "";
+    private dob = "";
     private userInfoArray: any[] = [];
 
     //Saves user info
@@ -64,8 +65,8 @@ export default class AccountInfo extends Vue {
       this.$appDB
         .collection(`users`)
         .doc(`${this.uid}`)
-        .set({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, email: this.email });
-        this.userInfoArray = [this.firstName, this.lastName, this.phoneNumber, this.email]
+        .set({ firstName: this.firstName, lastName: this.lastName, phoneNumber: this.phoneNumber, dob: this.dob });
+        this.userInfoArray = [this.firstName, this.lastName, this.phoneNumber, this.dob]
     }
 
     mounted(): void{
@@ -81,33 +82,12 @@ export default class AccountInfo extends Vue {
           console.log("active user first name: ", details.firstName);
           console.log("active user last name: ", details.lastName);
           console.log("active user phone number: ", details.phoneNumber);
-          console.log("active user email: ", details.email);
-          this.userInfoArray = [details.firstName, details.lastName, details.phoneNumber, details.email]
+          console.log("active user dob: ", details.dob);
+          this.userInfoArray = [details.firstName, details.lastName, details.phoneNumber, details.dob]
           console.log("userInforArray values: ", this.userInfoArray);
         }
       })
     }
-
-    /* mounted(): void {
-    console.log("In mounted function")
-    this.uid = this.$appAuth.currentUser?.uid ?? "none";
-    this.$appDB
-      .collection(`users/${this.uid}/userInfo`)
-      .orderBy("firstName") //Sort by category name
-      .onSnapshot((qs: QuerySnapshot) => {
-        this.allCategories.splice(0); //remove old data
-        qs.forEach((qds: QueryDocumentSnapshot) => {
-          if (qds.exists) {
-            const catData = qds.data();
-            this.allCategories.push({
-              name: catData.name,
-              limit: catData.monthlyLimit,
-            });
-          }
-        });
-      });
-  } */
-
 
     //Displays a message depending on the button pressed
     showMessage(m: string): void {
@@ -133,6 +113,7 @@ export default class AccountInfo extends Vue {
     this.$router.push({ path: "/management" })
   }
 
+  //checks if the current user is admin, used to show management button
   isAdmin(): boolean{
     return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2"; 
   }
@@ -140,29 +121,49 @@ export default class AccountInfo extends Vue {
 </script>
 
 <style>
-.inputSection {
-  margin: 5em auto;
-  width: 22em;
-  /* border: red 3px solid; */
-  border-radius: 1em;
-  /* overflow: hidden; */
- 
+/* Save btn style */
+#saveBtn{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 30px;
+    margin-right: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
 }
 
-.inputSection label {
-  text-align: right;
-  float: left;
-  
-  width: 100px;
-  /* border: blue 2px solid; */
-  margin-top: 1em;
+/* div styles for input fields and labels*/
+#saveUserInfoDiv{
+  border-radius: 25px;
+  border: 5px solid #0982a0;
+  background: rgb(179, 178, 178);
+  display: inline-block;
 }
 
-.inputSection input {
+/* input field style */
+.textInput{
+  float: right;
   text-align: left;
-  padding-top: .75em;
-  width: 200px;
-  margin-top: 1em;
-  /* border: green 2px solid; */
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/*label styles */
+.label{
+  float: left;
+  text-align: right;
+  margin-top: 10px;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: black;
 }
 </style>
