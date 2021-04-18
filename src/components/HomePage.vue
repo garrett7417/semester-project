@@ -1,7 +1,7 @@
 <template>
   <div id="topCotainer">
-    <button @click="rentNowRedirect()">Rent Now</button>
-    
+    <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+    <button class="navBtn" @click="userInfoRedirect()">Account Information</button><br>
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
     <button @click="userInfoRedirect()">Account Information</button>
@@ -71,8 +71,5 @@ export default class Home extends Vue{
     border: 4px solid #444;
     padding: 1px;
     width: 800px;
-  }
-  .button{
-    display: inline;
   }
 </style>
