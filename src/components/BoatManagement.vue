@@ -1,9 +1,9 @@
 <template>
   <div id="management">
-        <button class="navBtn" @click="homeRedirect()">Return Home</button>
-        <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-        <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
-        <h1>Boat Management</h1>
+    <button class="navBtn" @click="homeRedirect()">Return Home</button>
+    <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
+    <h1 id="header1">Boat Management</h1>
     <div id="addBoat">
         <h2>Add a New Boat</h2>
         <label class="label">Name: </label><input type="text" class="txtBox" v-model="name" placeholder="Boat Name"><br>

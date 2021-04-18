@@ -3,7 +3,7 @@
         <button class="navBtn" @click="homeRedirect()">Return Home</button>
         <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
         <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
-        <h1>Account Information</h1><br>
+        <h1 id="header1">Account Information</h1><br>
         <table>
           <thead>
             <th>First name</th>

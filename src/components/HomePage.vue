@@ -1,9 +1,11 @@
 <template>
   <div id="topCotainer">
-    <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
-    <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
-    <h1>Welcome to Sunshine Water Sports</h1>
+    <div class="navBtns">
+      <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+      <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
+      <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
+    </div>
+    <h1 class="head">Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
     <div class="gallary" align="center">
       <h3>Boat Gallary</h3>
@@ -51,6 +53,7 @@ export default class Home extends Vue{
   }
 
   managementRedirect(){
+    console.log("management redirect")
     this.$router.push({ path: "/management" })
   }
 
@@ -62,6 +65,7 @@ export default class Home extends Vue{
 </script>
 
 <style>
+
   #topContainer{
     background: #222;
     margin: 0;

@@ -3,7 +3,7 @@
     <button class="navBtn" @click="homeRedirect()">Return Home</button>
     <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
     <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
-    <h1>Rental Details</h1>
+    <h1 id="header1">Rental Details</h1>
     <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
     <h3>Choose the boat(s) you want</h3><br>
@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts">
-
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 import { FirebaseFirestore, QueryDocumentSnapshot, QuerySnapshot } from 'node_modules/@firebase/firestore-types';
@@ -56,8 +55,10 @@ export default class Rent extends Vue{
   }
 
   confirm(){
+      console.log("rental confirmation button clicked")
       this.$router.push({ path: "/rentalconfirmation"})
       this.isAvailable = false;
+      console.log("this boat: ", this.boatName, "is set to: ", this.isAvailable)
   }
 
   //redirects to user info page
