@@ -1,5 +1,8 @@
 <template>
   <div id="management">
+        <button class="navBtn" @click="homeRedirect()">Return Home</button>
+        <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+        <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
     <div id="addBoat">
         <h2>Add a New Boat</h2>
         <label class="label">Name: </label><input type="text" class="txtBox" v-model="name" placeholder="Boat Name"><br>
@@ -98,6 +101,23 @@ export default class BoatManagement extends Vue{
         this.$appDB
             .collection("WaterCrafts").doc(this.docName).delete();
     }
+
+    //redirects to home page
+    homeRedirect(){
+        console.log("homeRedirect button clicked")
+        this.$router.push({ path: "/home" })
+    }
+
+    //redirects to rent now page
+    rentNowRedirect(){
+        console.log("rentNowRedirect button clicked")
+        this.$router.push({ path: "/rent" })
+    }
+
+    userInfoRedirect(){
+    console.log("userInfoRedirect button clicked")
+    this.$router.push({ path: "/accountinfo" })
+  }
 }
 
 </script>
@@ -120,13 +140,40 @@ export default class BoatManagement extends Vue{
     cursor: pointer;
     float: right;
 }
-
+/* Remove boat styles */
+#removeBoat{
+    border-radius: 25px;
+    border: 5px solid #0982a0;
+    background: rgb(179, 178, 178);
+    margin: 15px;
+    display: inline-block;
+}
+#boats{
+    margin-left: 10px;
+}
+#remove{
+    border: 0;
+    background: white;
+    display: inline;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0982a0;
+    padding: 5px 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    outline: none;
+    color: black;
+    transition: 0.25s;
+    border-radius: 10px;
+    cursor: pointer;
+}
 /* Add Boat Styles */
 #addBoat{
     border-radius: 25px;
     border: 5px solid #0982a0;
     background: rgb(179, 178, 178);
     display: inline-block;
+    
 }
 .txtBox{
     float: right;

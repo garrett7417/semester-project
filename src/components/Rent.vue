@@ -2,6 +2,7 @@
   <div id="rentalDetails">
     <button class="navBtn" @click="homeRedirect()">Return Home</button>
     <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
+    <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
     <h1>Rental Details</h1>
     <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
     <input type="number" max="15" placeholder="Enter number of children" /><br> -->
@@ -63,6 +64,14 @@ export default class Rent extends Vue{
   userInfoRedirect(){
     console.log("userInfoRedirect button clicked")
     this.$router.push({ path: "/accountinfo" })
+  }
+
+  managementRedirect(){
+    this.$router.push({ path: "/management" })
+  }
+
+  isAdmin(): boolean{
+    return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2"; 
   }
 }
 </script>

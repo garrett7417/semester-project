@@ -2,6 +2,7 @@
     <div id="testcontainer">
         <button class="navBtn" @click="homeRedirect()">Return Home</button>
         <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
+        <button class="navBtn" @click="managementRedirect()">Management</button>
         <h1>Account Information</h1><br>
         <table>
           <thead>
@@ -127,6 +128,10 @@ export default class AccountInfo extends Vue {
         console.log("rentNowRedirect button clicked")
         this.$router.push({ path: "/rent" })
     }
+
+    managementRedirect(){
+    this.$router.push({ path: "/management" })
+  }
 }
 </script>
 

@@ -2,9 +2,9 @@
   <div id="topCotainer">
     <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
     <button class="navBtn" @click="userInfoRedirect()">Account Information</button><br>
+    <button class="navBtn" @click="managementRedirect()">Management</button>
     <h1>Welcome to Sunshine Water Sports</h1>
     <p>Your boating adventure starts here!</p>
-    <button @click="userInfoRedirect()">Account Information</button>
     <div class="gallary" align="center">
       <h3>Boat Gallary</h3>
       <div class="thumbnails">
@@ -47,6 +47,10 @@ export default class Home extends Vue{
   userInfoRedirect(){
     console.log("userInfoRedirect button clicked")
     this.$router.push({ path: "/accountinfo" })
+  }
+
+  managementRedirect(){
+    this.$router.push({ path: "/management" })
   }
 }
 
