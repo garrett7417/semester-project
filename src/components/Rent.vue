@@ -10,7 +10,7 @@
     <div class="userInputs">
       <label>Choose the boat you want: </label>
       <select class="right" v-model="selectedBoat">
-        <option v-for="(c, pos) in allBoats" :value="c.name" :key="pos">{{ c.name }}</option>
+        <option v-for="(c, pos) in availableBoats" :value="c.name" :key="pos"> {{c.year}} {{ c.name }} </option>
       </select>
       <!-- <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
 
@@ -29,14 +29,23 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { FirebaseAuth, UserCredential } from "@firebase/auth-types";
 import {FirebaseFirestore, QueryDocumentSnapshot, QuerySnapshot,} from "@firebase/firestore-types";
 import { FieldValue } from "@firebase/firestore-types";
+
+interface boatData{
+  name: string;
+  year: number;
+  isAvailable: boolean;
+}
+
 @Component
 export default class Rent extends Vue {
   readonly $appAuth!: FirebaseAuth;
   readonly $appDB!: FirebaseFirestore;
   private uid = "none";
-  private boatName = "";
-  private allBoats: any[] = [];
+
+  private allBoats: boatData[] = [];
+  private availableBoats: boatData[] = [];
   private selectedBoat = "";
+  private isAvailable = true;
 
   //Pulls the boat names from the Firebase collection
   mounted(): void {
@@ -46,15 +55,16 @@ export default class Rent extends Vue {
       .orderBy("name")
       .onSnapshot((qs: QuerySnapshot) => {
         this.allBoats.splice(0);
+        this.availableBoats.splice(0);
         qs.forEach((qds: QueryDocumentSnapshot) => {
           if (qds.exists) {
-            const boatName = qds.data();
+            const boatName: boatData = qds.data() as boatData;
             this.allBoats.push({
-              name: boatName.name,
-              isAvailable: boatName.isAvailable,
+              ...boatName
             });
           }
         });
+        this.availableBoats = this.allBoats.filter((b: boatData) => b.isAvailable)    
       });
   }
   
@@ -66,11 +76,12 @@ export default class Rent extends Vue {
   confirm() {
     console.log("rental confirmation button clicked");
     this.$router.push({ path: "/rentalconfirmation" });
-    console.log("selected boat: ", this.selectedBoat);
-    /* this.$appDB
-        .collection(`WaterCrafts`)
-        .doc(this.selectedBoat)
-        .set({ isAvailable: false }); */
+    if(this.selectedBoat != null || this.selectedBoat != ""){
+      this.$appDB
+          .collection(`WaterCrafts`)
+          .doc(this.selectedBoat)
+          .update({ isAvailable: false });
+    }
   }
 
   //redirects to user info page
