@@ -89,7 +89,7 @@ export default class BoatManagement extends Vue{
             .collection("WaterCrafts").get().then((qs: QuerySnapshot) => {
                 qs.docs.forEach(docName => {
                         this.allBoatData.push({
-                            docName: docName.id
+                            docName: docName.id,
                         })
                     
                 })                
