@@ -12,7 +12,7 @@
             <label class="label">Model: </label><input type="text" class="txtBox" v-model="model" placeholder="Boat Model"><br>
             <label class="label">Year: </label><input type="number" class="txtBox" v-model="year" placeholder="Year Created"><br>
             <label class="label">Capacity: </label><input type="number" class="txtBox" v-model="capacity" placeholder="Maximum Riders"><br>
-            <label class="label">Availability: </label><input type="boolean" class="txtBox" v-model="isAvailabile" placeholder="Is the boat available"><br>
+            <label class="label">Availability: </label><input type="boolean" class="txtBox" v-model="isAvailable" placeholder="Is the boat available"><br>
             <button id="add" @click="addBoat()">Add</button>
         </div>
 
@@ -34,7 +34,7 @@
                 <th>Model</th>
                 <th>Year</th>
                 <th>Capacity</th>
-                <th>Available? (T/F)</th>
+                <th>Available?</th>
             </tr>
             <tr v-for="(z,pos) in allBoatData" :key="pos">
                 <td id="left">{{z.name}}</td>
@@ -42,7 +42,8 @@
                 <td id="left">{{z.model}}</td>
                 <td id="right">{{z.year}}</td>
                 <td id="right">{{z.capacity}}</td>
-                <td id="left">{{z.isAvailabile}}</td>
+                <td id="left" v-if="z.isAvailabile == true">Yes</td>
+                <td id="left" v-else>No</td>
             </tr>
         </table>
     </div>
@@ -64,7 +65,7 @@ export default class BoatManagement extends Vue{
     private year = "";
     private capacity = "";
     private docName = "";
-    private isAvailabile = true;
+    private isAvailable = true;
     private allBoatData: any[] = [];
 
     mounted(): void{
@@ -82,9 +83,9 @@ export default class BoatManagement extends Vue{
                             model: boatData.model,
                             year: boatData.year,
                             capacity: boatData.capacity,
-                            isAvailabile: boatData.isAvailabile,
+                            isAvailabile: boatData.isAvailable,
                         });
-                        console.log("status of boat: ", boatData.name, " is: ", boatData.isAvailabile);
+                        console.log("status of boat: ", boatData.name, " is: ", boatData.isAvailable);
                     }
                 });
             });
@@ -95,6 +96,7 @@ export default class BoatManagement extends Vue{
                         this.allBoatData.push({
                             docName: docName.id
                         })
+                    
                 })                
             })  
     } 
@@ -102,7 +104,7 @@ export default class BoatManagement extends Vue{
     addBoat(): void{
         this.$appDB
             .collection("WaterCrafts")
-            .add({name: this.name, make: this.make, model: this.model, year: this.year, capacity: this.capacity, isAvailable: this.isAvailabile})
+            .add({name: this.name, make: this.make, model: this.model, year: this.year, capacity: this.capacity, isAvailable: this.isAvailable})
     }
 
     removeBoat(){
