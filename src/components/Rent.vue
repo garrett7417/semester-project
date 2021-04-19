@@ -64,15 +64,6 @@ export default class Rent extends Vue{
   confirm(){
       console.log("rental confirmation button clicked")
       this.$router.push({ path: "/rentalconfirmation"})
-      this.$appDB
-            .collection("WaterCrafts").get().then((qs: QuerySnapshot) => {
-                qs.forEach(boatName => {
-                        this.allBoats.push({
-                            name: boatName.data().name,
-                        })
-                    console.log(boatName.data().name)
-                })                
-            })  
   }
 
   //redirects to user info page
