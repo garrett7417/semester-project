@@ -49,8 +49,9 @@ export default class Rent extends Vue{
                     if(qds.exists && this.isAvailable){
                         const boatName = qds.data();
                         this.allBoats.push({                           
-                            name: boatName.name
+                            name: boatName.name,
                         })
+                        console.log(boatName.isAvailabile);
                     }
                 })
             })
