@@ -19,6 +19,10 @@
         your adventure. Once your rental time is up, head on back to the marina and press the "Return Boat" button to confirm the boat is back
         at the shop. If you have any questions please call us at (111)222-3333, and thank you for choosing us!
       </div>
+      <label>Select the boat you're returning</label>
+      <select class="right" v-model="selectedBoat">
+        <option v-for="(c, pos) in rentedBoats" :value="c.name" :key="pos"> {{c.year}} {{ c.name }} </option>
+      </select>
       <button class="returnBtn"  @click="returnBoat()">RETURN BOAT</button>
     </div>
   </div>
@@ -42,7 +46,7 @@ export default class RentalConfirmation extends Vue{
   readonly $appDB!: FirebaseFirestore;
   private selectedBoat = ""
   private allBoats: boatData[] = [];
-  private availableBoats: boatData[] = [];
+  private rentedBoats: boatData[] = [];
 
   mounted(): void {
     this.$appDB
@@ -50,7 +54,7 @@ export default class RentalConfirmation extends Vue{
       .orderBy("name")
       .onSnapshot((qs: QuerySnapshot) => {
         this.allBoats.splice(0);
-        this.availableBoats.splice(0);
+        this.rentedBoats.splice(0);
         qs.forEach((qds: QueryDocumentSnapshot) => {
           if (qds.exists) {
             const boatName: boatData = qds.data() as boatData;
@@ -59,7 +63,7 @@ export default class RentalConfirmation extends Vue{
             });
           }
         });
-        this.availableBoats = this.allBoats.filter((b: boatData) => b.isAvailable)    
+        this.rentedBoats = this.allBoats.filter((b: boatData) => b.isAvailable === false)    
       });
   }
 
@@ -105,6 +109,9 @@ export default class RentalConfirmation extends Vue{
 </script>
 
 <style>
+label{
+  float: left;
+}
 .indented{
   padding-left: 50pt;
   padding-right: 50pt;
