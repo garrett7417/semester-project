@@ -19,7 +19,7 @@
         <div id="removeBoat">
             <h2>Remove a Boat</h2>
             <select id="boats" v-model="docName">
-                <option v-for="(c,pos) in allBoatData" :value="c.docName" :key="pos"> {{c.docName}}</option>
+                <option v-for="(c,pos) in allBoatData" :value="c.name" :key="pos"> {{c.name}}</option>
             </select>
             <button id="remove" @click="removeBoat()">Remove</button>
         </div>
@@ -90,7 +90,7 @@ export default class BoatManagement extends Vue{
                 });
             });
 
-        this.$appDB
+            /* this.$appDB
             .collection("WaterCrafts").get().then((qs: QuerySnapshot) => {
                 qs.docs.forEach(docName => {
                         this.allBoatData.push({
@@ -98,13 +98,14 @@ export default class BoatManagement extends Vue{
                         })
                     
                 })                
-            })  
+            })  */
     } 
 
     addBoat(): void{
         this.$appDB
             .collection("WaterCrafts")
-            .add({name: this.name, make: this.make, model: this.model, year: this.year, capacity: this.capacity, isAvailable: this.isAvailable})
+            .doc(this.name)
+            .set({name: this.name, make: this.make, model: this.model, year: this.year, capacity: this.capacity, isAvailable: this.isAvailable})
     }
 
     removeBoat(){
