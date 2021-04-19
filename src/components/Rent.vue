@@ -50,6 +50,7 @@ export default class Rent extends Vue{
                             name: boatName.name,
                             isAvailable: boatName.isAvailable,                            
                         })
+                        console.log(boatName.isAvailabile);
                     }
                 })
             })
