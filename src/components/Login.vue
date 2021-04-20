@@ -37,13 +37,11 @@ export default class Login extends Vue {
             .createUserWithEmailAndPassword(this.userEmail, this.userPassword)
             .then((u: UserCredential) => {
                 this.showMessage(`User create UID ${u.user?.uid}`);
-                this.$router.push({ path: "/home" })
+                this.$router.push({ path: "/accountinfo" })
             })
             .catch((err: any) => {
                 this.showMessage(`Unable to create account ${err}`);
-                console.log("hi")
             });
-            console.log("hi")
     }
 
     //Checks if the email and password are registered and logins if so
