@@ -182,7 +182,7 @@ h1{
 
 .right{
     right: 0;
-    margin-top: 13%;
+    margin-top: 7%;
 }
 
 /* Remove boat Styles */
