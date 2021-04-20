@@ -281,7 +281,8 @@ th{
 }
 
 body{
-    background-color: rgb(179, 178, 178);
+    /* background-color: rgb(179, 178, 178); */
+    /* background-image: url('../assets/mapOfLake2.jpg'); */
 }
 
 .header{

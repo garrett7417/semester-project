@@ -18,42 +18,41 @@
             <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
         </header>
       </div>
+      <h1 id="header1">Account Information</h1><br>
+      <table>
+        <thead>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Phone</th>
+          <th>Date of birth</th>
+        </thead>
+          <tr>
+            <td>{{ userInfoArray[0]}}</td>
+            <td>{{ userInfoArray[1]}}</td>
+            <td>{{ userInfoArray[2]}}</td>
+            <td>{{ userInfoArray[3]}}</td>
+          </tr>
+        <tbody>
+        </tbody>
+      </table>
 
-        <h1 id="header1">Account Information</h1><br>
-        <table>
-          <thead>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Phone</th>
-            <th>Date of birth</th>
-          </thead>
-            <tr>
-              <td>{{ userInfoArray[0]}}</td>
-              <td>{{ userInfoArray[1]}}</td>
-              <td>{{ userInfoArray[2]}}</td>
-              <td>{{ userInfoArray[3]}}</td>
-            </tr>
-          <tbody>
-          </tbody>
-        </table>
+      <div id="saveUserInfoDiv">
+        <h2>Update User Info</h2>
+        <label for="firstName" class="label">First name:</label>
+        <input id="firstName" class="textInput" type="text" placeholder="First name" v-model="firstName"><br>
 
-        <div id="saveUserInfoDiv">
-          <h2>Update User Info</h2>
-          <label for="firstName" class="label">First name:</label>
-          <input id="firstName" class="textInput" type="text" placeholder="First name" v-model="firstName"><br>
+        <label for="lastName" class="label">Last name:</label>
+        <input id="lastName" class="textInput" type="text" placeholder="Last name" v-model="lastName"><br>
 
-          <label for="lastName" class="label">Last name:</label>
-          <input id="lastName" class="textInput" type="text" placeholder="Last name" v-model="lastName"><br>
+        <label for="phone" class="label">Phone:</label>
+        <input id="phone" class="textInput" type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber"><br>
 
-          <label for="phone" class="label">Phone:</label>
-          <input id="phone" class="textInput" type="text" placeholder="(XXX) XXX-XXXX" v-model="phoneNumber"><br>
-
-          <label for="dob" class="label">Date of birth:</label>
-          <input id="dob" class="textInput" type="date"  v-model="dob"><br>
-          <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
-        </div>
-        <div>{{message}}</div>
-    </div>
+        <label for="dob" class="label">Date of birth:</label>
+        <input id="dob" class="textInput" type="date"  v-model="dob"><br>
+        <button id="saveBtn" v-on:click="saveUserInfo" type="submit">Save</button>
+      </div>
+      <div>{{message}}</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -145,6 +144,12 @@ export default class AccountInfo extends Vue {
 </script>
 
 <style>
+/*sets background image*/
+body{
+  background-image: url('../assets/mapOfLake2.jpg');
+  background-size: 100%;
+}
+
 /* Save btn style */
 #saveBtn{
     border: 0;
