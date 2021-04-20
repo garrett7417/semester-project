@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button>
     <router-view></router-view>
   </div>
 </template>
@@ -54,7 +53,6 @@ export default class App extends Vue {
 h1 {
   display: block;
 }
-
 /* Button styling */
     button{
         border: 0;
@@ -70,14 +68,14 @@ h1 {
         border-radius: 24px;
         transition: 0.25s;
         cursor: pointer;
-    }
-    /* Button hover styling */
+    } 
+     
     button:hover{
-        background: #2e80cc;
+        background: #00ccff;
     }
 
     .navBtn, #logOutBtn{
       float: right;
       display: block;
-    }
+    } 
 </style>

@@ -1,24 +1,29 @@
 <template>
-  <div id="rentalDetails">
-    <button class="navBtn" @click="homeRedirect()">Return Home</button>
-    <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
-    <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
-    <h1 id="header1">Rental Details</h1>
-    <!-- <label>Group Size: </label><input type="number" max="15" placeholder="Enter number of adults" />
-    <input type="number" max="15" placeholder="Enter number of children" /><br> -->
+  <div id="topContainer">
+    <head>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+      <link href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+    </head>
+    <div class="navBtns">
+      <header>
+          <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
+          <nav>
+            <ul>
+              <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
+              <li><button class="navBtn" @click="userInfoRedirect()">Account Information</button></li>
+              <li><button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button></li>
+              <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
+            </ul>
+          </nav>
+          <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+      </header>
+    </div>
 
     <div class="userInputs">
       <label>Choose the boat you want: </label>
       <select class="right" v-model="selectedBoat">
         <option v-for="(c, pos) in availableBoats" :value="c.name" :key="pos"> {{c.year}} {{ c.name }} </option>
       </select>
-      <!-- <label>Group Size: </label><input type="number" placeholder="Number of adults" class="right">
-
-      <label>Rental Duration: </label><select class="right">
-        <option></option>
-        <option>4 Hours</option>
-        <option>8 Hours</option>
-      </select> -->
       <button class="confirm" @click="confirm()">Confirm</button>
     </div>
   </div>
@@ -97,17 +102,26 @@ export default class Rent extends Vue {
   isAdmin(): boolean {
     return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2";
   }
+
+  userLoggedIn(): boolean {
+    return this.$appAuth.currentUser?.uid !== undefined;
+  }
+  doLogout(): void {
+    this.$appAuth.signOut();
+    this.$router.push({path: "/"});
+  }
 }
 </script>
 
 <style>
+
 .confirm {
   border: 0;
   background: white;
   display: inline;
   margin: 10px auto;
   text-align: center;
-  border: 2px solid #0982a0;
+  border: 2px solid #00ccff;
   padding: 5px 30px;
   margin-right: 10px;
   outline: none;
@@ -125,17 +139,14 @@ label {
   margin-left: 10px;
   margin-top: 33px;
   margin-right: 10px;
+  color: white;
 }
 .userInputs {
   border-radius: 25px;
-  border: 5px solid #0982a0;
-  background: rgb(179, 178, 178);
+  border: 5px solid #00ccff;
+  background: #101010;
   display: inline-block;
   width: 500px;
-}
-footer {
-  position: absolute;
-  bottom: 0;
 }
 #rentailDetails {
   color: white;

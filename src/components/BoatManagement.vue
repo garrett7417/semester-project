@@ -1,9 +1,25 @@
 <template>
-  <div id="management">
-        <button class="navBtn" @click="homeRedirect()">Return Home</button>
-        <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-        <button class="navBtn" @click="userInfoRedirect()">Account Information</button>
-        <h1>Boat Management</h1>
+  <div id="topContainer">
+    <head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+    <link href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+    </head>
+    <div class="navBtns">
+    <header>
+        <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
+        <nav>
+            <ul>
+            <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
+            <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
+            <li><button class="navBtn" @click="userInfoRedirect()">Account Information</button></li>
+            <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
+            </ul>
+        </nav>
+        <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+    </header>
+    </div>
+        
+    <h1>Boat Management</h1>
     <div class ="split left">
         <div id="addBoat">
             <h2>Add a New Boat</h2>
@@ -26,7 +42,7 @@
     </div>
 
     <div class="split right">
-        <h2>Our Current Boats</h2>
+        <h1>Our Current Boats</h1>
         <table>
             <tr>
                 <th>Name</th>
@@ -59,6 +75,7 @@ import { FirebaseFirestore, QueryDocumentSnapshot, QuerySnapshot } from 'node_mo
 @Component
 export default class BoatManagement extends Vue{
     readonly $appDB!: FirebaseFirestore;
+    readonly $appAuth!: FirebaseAuth;
     private name = "";
     private make = "";
     private model = "";
@@ -129,6 +146,14 @@ export default class BoatManagement extends Vue{
     console.log("userInfoRedirect button clicked")
     this.$router.push({ path: "/accountinfo" })
   }
+
+  userLoggedIn(): boolean {
+    return this.$appAuth.currentUser?.uid !== undefined;
+  }
+  doLogout(): void {
+    this.$appAuth.signOut();
+    this.$router.push({path: "/"});
+  }
 }
 
 </script>
@@ -137,7 +162,9 @@ export default class BoatManagement extends Vue{
 /* Screen view Styles */
 h1{
     text-align: center;
+    
 }
+
 .split{
     height: 100%;
     width: 50%;
@@ -150,19 +177,19 @@ h1{
 
 .left{
     left: 0;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .right{
     right: 0;
-    margin-top: 7%;
+    margin-top: 13%;
 }
 
 /* Remove boat Styles */
 #removeBoat{
     border-radius: 25px;
-    border: 5px solid #0982a0;
-    background: rgb(179, 178, 178);
+    border: 5px solid #00ccff;
+    background: #101010;
     margin: 15px;
     display: block;
     width: 320px;
@@ -177,7 +204,7 @@ h1{
     display: inline;
     margin: 10px auto;
     text-align: center;
-    border: 2px solid #0982a0;
+    border: 2px solid #00ccff;
     padding: 5px 20px;
     margin-left: 10px;
     outline: none;
@@ -193,7 +220,7 @@ h1{
     display: inline;
     margin: 10px auto;
     text-align: center;
-    border: 2px solid #0982a0;
+    border: 2px solid #00ccff;
     padding: 5px 30px;
     margin-right: 10px;
     outline: none;
@@ -205,8 +232,8 @@ h1{
 }
 #addBoat{
     border-radius: 25px;
-    border: 5px solid #0982a0;
-    background: rgb(179, 178, 178);
+    border: 5px solid #00ccff;
+    background: #101010;
     display: block;
     width: 320px;
     float: left;
@@ -247,14 +274,14 @@ tr:nth-of-type(odd){
 }
 
 th{
-    background-color: #0982a0;
+    background-color: #00ccff;
     color: white;
     text-align: left;
     font-family: sans-serif;
 }
 
 body{
-    background-color: #34495e;
+    background-color: rgb(179, 178, 178);
 }
 
 .header{

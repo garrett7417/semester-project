@@ -1,8 +1,24 @@
 <template>
-    <div id="testcontainer">
-        <button class="navBtn" @click="homeRedirect()">Return Home</button>
-        <button class="navBtn" @click="rentNowRedirect()">Rent Now</button>
-        <button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button>
+    <div id="topContainer">
+      <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+        <link href=https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+      </head>
+      <div class="navBtns">
+        <header>
+            <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
+            <nav>
+              <ul>
+                <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
+                <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
+                <li><button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button></li>
+                <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
+              </ul>
+            </nav>
+            <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+        </header>
+      </div>
+
         <h1 id="header1">Account Information</h1><br>
         <table>
           <thead>
@@ -113,6 +129,14 @@ export default class AccountInfo extends Vue {
     this.$router.push({ path: "/management" })
   }
 
+  userLoggedIn(): boolean {
+    return this.$appAuth.currentUser?.uid !== undefined;
+  }
+  doLogout(): void {
+    this.$appAuth.signOut();
+    this.$router.push({path: "/"});
+  }
+
   //checks if the current user is admin, used to show management button
   isAdmin(): boolean{
     return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2"; 
@@ -128,7 +152,7 @@ export default class AccountInfo extends Vue {
     display: inline;
     margin: 10px auto;
     text-align: center;
-    border: 2px solid #0982a0;
+    border: 2px solid #00ccff;
     padding: 5px 30px;
     margin-right: 10px;
     outline: none;
@@ -142,8 +166,8 @@ export default class AccountInfo extends Vue {
 /* div styles for input fields and labels*/
 #saveUserInfoDiv{
   border-radius: 25px;
-  border: 5px solid #0982a0;
-  background: rgb(179, 178, 178);
+  border: 5px solid #00ccff;
+  background: #101010;
   display: inline-block;
 }
 
@@ -164,6 +188,10 @@ export default class AccountInfo extends Vue {
   font-size: 18px;
   margin-right: 10px;
   margin-left: 10px;
-  color: black;
+  color: white;
+}
+
+h2{
+  color: white;
 }
 </style>
