@@ -9,9 +9,10 @@
         <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
         <nav>
             <ul>
-            <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
             <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
+            <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
             <li><button class="navBtn" @click="userInfoRedirect()">Account Information</button></li>
+            <li><button class="navBtn" @click="rentalReturnRedirect()">Return Rental</button></li>
             <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
             </ul>
         </nav>
@@ -142,18 +143,22 @@ export default class BoatManagement extends Vue{
         this.$router.push({ path: "/rent" })
     }
 
-    userInfoRedirect(){
-    console.log("userInfoRedirect button clicked")
-    this.$router.push({ path: "/accountinfo" })
-  }
+    rentalReturnRedirect(){
+        this.$router.push({ path: "/rentalconfirmation" })
+    }
 
-  userLoggedIn(): boolean {
-    return this.$appAuth.currentUser?.uid !== undefined;
-  }
-  doLogout(): void {
-    this.$appAuth.signOut();
-    this.$router.push({path: "/"});
-  }
+    userInfoRedirect(){
+        console.log("userInfoRedirect button clicked")
+        this.$router.push({ path: "/accountinfo" })
+    }
+
+    userLoggedIn(): boolean {
+        return this.$appAuth.currentUser?.uid !== undefined;
+    }
+    doLogout(): void {
+        this.$appAuth.signOut();
+        this.$router.push({path: "/"});
+    }
 }
 
 </script>

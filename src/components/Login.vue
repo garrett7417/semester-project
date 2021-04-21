@@ -109,7 +109,7 @@ export default class Login extends Vue {
     /* Selected input styling */
     .box input[type="text"]:focus,.box input[type="password"]:focus{
         width: 280px;
-        border-color: #2e80cc;    
+        border-color: #00ccff;    
     }
     /* Button styling */
     .box button[type = "submit"]{
@@ -129,7 +129,7 @@ export default class Login extends Vue {
     }
     /* Button hover styling */
     .box button[type = "submit"]:hover{
-        background: #2e80cc;
+        background: #00ccff;
     }
     .hidden{
         display: none;

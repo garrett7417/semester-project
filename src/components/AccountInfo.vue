@@ -9,9 +9,10 @@
             <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
             <nav>
               <ul>
-                <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
                 <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
+                <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
                 <li><button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button></li>
+                <li><button class="navBtn" @click="rentalReturnRedirect()">Return Rental</button></li>
                 <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
               </ul>
             </nav>
@@ -128,6 +129,10 @@ export default class AccountInfo extends Vue {
     this.$router.push({ path: "/management" })
   }
 
+  rentalReturnRedirect(){
+    this.$router.push({ path: "/rentalconfirmation" })
+  }
+
   userLoggedIn(): boolean {
     return this.$appAuth.currentUser?.uid !== undefined;
   }
@@ -146,8 +151,9 @@ export default class AccountInfo extends Vue {
 <style>
 /*sets background image*/
 body{
-  background-image: url('../assets/mapOfLake2.jpg');
-  background-size: 100%;
+  /* background-image: url('../assets/mapOfLake2.jpg');
+  background-size: 100%; */
+  background: rgb(179, 178, 178);
 }
 
 /* Save btn style */

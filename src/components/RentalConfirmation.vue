@@ -9,7 +9,7 @@
           <div class="logo_container"><h1>Sunshine<span>WaterSports</span></h1></div>
           <nav>
             <ul>
-              <li><button class="navBtn" @click="homeRedirect()">Return Home</button></li>
+              <li><button class="navBtn" @click="homeRedirect()">Home</button></li>
               <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
               <li><button class="navBtn" @click="userInfoRedirect()">Account Information</button></li>
               <li><button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button></li>
@@ -76,10 +76,11 @@ export default class RentalConfirmation extends Vue{
             });
           }
         });
+        //Pulls the boats that aren't available
         this.rentedBoats = this.allBoats.filter((b: boatData) => b.isAvailable === false)    
       });
   }
-
+  //Sets the selected boats availability to true when called
   returnBoat() {
     if(this.selectedBoat != null && this.selectedBoat != ""){
       console.log(this.selectedBoat)

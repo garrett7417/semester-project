@@ -12,6 +12,7 @@
               <li><button class="navBtn" @click="rentNowRedirect()">Rent Now</button></li>
               <li><button class="navBtn" @click="userInfoRedirect()">Account Information</button></li>
               <li><button class="navBtn" v-if="isAdmin()" @click="managementRedirect()">Management</button></li>
+              <li><button class="navBtn" @click="rentalReturnRedirect()">Return Rental</button></li>
               <li><button id="logOutBtn" v-if="userLoggedIn()" @click="doLogout">Logout</button></li>
             </ul>
           </nav>
@@ -21,7 +22,7 @@
     <div class="backgroundImg" style="background-image: url('../assets/mapOfLake2.jpg');">
       <div class="gallary" align="center">
         <p>Your boating adventure starts here!</p>
-        <h1>Boat Gallary</h1>
+        <h1>Boat Gallery</h1>
         <div class="thumbnails">
           <!-- Powerboat Images -->
           <img onmouseover="getElementById('preview').src=this.src" src="../assets/2021 Malibu Wakesetter.jpg" alt="2021 Malibu Wakesetter">
@@ -73,6 +74,10 @@ export default class Home extends Vue{
 
   isAdmin(): boolean{
     return this.$appAuth.currentUser?.uid === "uqdLaprxbDM4tLTXjeSbAxnodDb2"; 
+  }
+
+  rentalReturnRedirect(){
+    this.$router.push({ path: "/rentalconfirmation" })
   }
 
   userLoggedIn(): boolean {
