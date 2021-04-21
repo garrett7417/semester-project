@@ -22,7 +22,9 @@
     <div class="backgroundImg" style="background-image: url('../assets/mapOfLake2.jpg');">
       <div class="gallary" align="center">
         <p>Your boating adventure starts here!</p>
+        <div class="headerContainer">
         <h1>Boat Gallery</h1>
+        </div>
         <div class="thumbnails">
           <!-- Powerboat Images -->
           <img onmouseover="getElementById('preview').src=this.src" src="../assets/2021 Malibu Wakesetter.jpg" alt="2021 Malibu Wakesetter">

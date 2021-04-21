@@ -19,7 +19,9 @@
             <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
         </header>
       </div>
-      <h1 id="header1">Account Information</h1><br>
+      <div class="headerContainer">
+        <h1 id="header1">Account Information</h1><br>
+      </div>
       <table>
         <thead>
           <th>First name</th>

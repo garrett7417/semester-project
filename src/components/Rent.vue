@@ -19,7 +19,9 @@
           <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
       </header>
     </div>
-    <h1>Rental Information</h1>
+    <div class="headerContainer">
+      <h1>Rental Information</h1>
+    </div>
     <div class="userInputs">
       <table id="blank">
         <tr>
@@ -176,5 +178,10 @@ export default class Rent extends Vue {
 .inputRight{
   float: right;
 }
-
+.headerContainer{
+  color: black;
+  font-size: 2em;
+  font-weight: 1000;
+  text-shadow: 3px 3px #00ccff;
+}
 </style>

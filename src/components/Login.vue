@@ -98,7 +98,7 @@ export default class Login extends Vue {
         display: block;
         margin: 20px auto;
         text-align: center;
-        border: 2px solid #d62f23;
+        border: 2px solid #e47f78;
         padding: 14px 10px;
         width: 200px;
         outline: none;

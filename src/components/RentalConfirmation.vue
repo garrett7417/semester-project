@@ -20,10 +20,11 @@
       </header>
     </div>
     
-    <div class="indented">
-      <div>
+    <div class="headerContainer" id="marginTop">
         <h1>Rental Confirmation</h1>
-      </div>
+    </div>
+
+    <div class="indented">
       <div>
         Thank you for choosing Sunshine Water Sports to host your boating adventure. Come on down to the marina today
         at 13114 S. Marina DR. and we will send you out as fast as possible. Once you are here we will 
@@ -135,7 +136,7 @@ label{
   float: left;
 }
 .indented{
-  margin-top: 10%;
+  margin-top: 4%;
   padding-left: 50pt;
   padding-right: 50pt;
   overflow-x: hidden;
@@ -162,5 +163,9 @@ label{
     border-radius: 10px;
     cursor: pointer;
     float: right;
+}
+
+#marginTop{
+  margin-top: 6%;
 }
 </style>

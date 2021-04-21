@@ -19,8 +19,9 @@
         <div class="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
     </header>
     </div>
-        
-    <h1>Boat Management</h1>
+    <div class="headerContainer">
+        <h1>Boat Management</h1>
+    </div>
     <div class ="split left">
         <div id="addBoat">
             <h2>Add a New Boat</h2>
