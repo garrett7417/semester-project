@@ -146,7 +146,7 @@ export default class AccountInfo extends Vue {
 <style>
 /*sets background image*/
 body{
-  background-image: url('../assets/mapOfLake2.jpg');
+  background-image: url('../assets/mapOfLake3.jpg');
   background-size: 100%;
 }
 
