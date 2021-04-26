@@ -180,7 +180,7 @@ export default class Rent extends Vue {
 }
 .headerContainer{
   color: black;
-  font-size: 2em;
+  font-size: 1.5em;
   font-weight: 1000;
   text-shadow: 3px 3px #00ccff;
 }

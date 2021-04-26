@@ -286,11 +286,6 @@ th{
     font-family: sans-serif;
 }
 
-body{
-    /* background-color: rgb(179, 178, 178); */
-    /* background-image: url('../assets/mapOfLake2.jpg'); */
-}
-
 .header{
     text-align: center;
     font-size: 28px;
